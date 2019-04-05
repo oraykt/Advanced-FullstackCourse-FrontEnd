@@ -35,7 +35,7 @@ const SINGLE_ITEM_QUERY = gql`
 `
 
 class SingleItem extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Query query={SINGLE_ITEM_QUERY} variables={

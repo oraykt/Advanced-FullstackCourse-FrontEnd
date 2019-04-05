@@ -53,7 +53,7 @@ injectGlobal`
 `
 
 export default class Page extends Component {
-  render() {
+  render () {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>

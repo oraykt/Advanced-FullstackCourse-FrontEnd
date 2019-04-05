@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
-import Router from 'next/router';
-import gql from 'graphql-tag';
-import Form from './styles/Form';
-import formatMoney from '../lib/formatMoney';
-import Error from './ErrorMessage';
+import React, { Component } from 'react'
+import { Mutation } from 'react-apollo'
+import Router from 'next/router'
+import gql from 'graphql-tag'
+import Form from './styles/Form'
+import formatMoney from '../lib/formatMoney'
+import Error from './ErrorMessage'
 
 const CREATE_ITEM_MUTATION = gql`
     mutation CREATE_ITEM_MUTATION(
@@ -24,7 +24,7 @@ const CREATE_ITEM_MUTATION = gql`
             id
         }
     }
-`;
+`
 
 class CreateItem extends Component {
   state = {
@@ -36,30 +36,30 @@ class CreateItem extends Component {
   };
 
   handleChange = (e) => {
-    const { name, type, value } = e.target;
-    const val = type === 'number' ? parseFloat(value) : value;
+    const { name, type, value } = e.target
+    const val = type === 'number' ? parseFloat(value) : value
 
     this.setState({ [name]: val })
   };
 
   uploadFile = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'sickfits');
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'sickfits')
     const res = await fetch('https://api.cloudinary.com/v1_1/oraykurt/image/upload', {
       method: 'POST',
       body: data
-    });
+    })
 
-    const file = await res.json();
+    const file = await res.json()
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
-    });
+    })
   }
 
-  render() {
+  render () {
     return (
       <Mutation
         mutation={CREATE_ITEM_MUTATION}
@@ -68,20 +68,20 @@ class CreateItem extends Component {
         {(createItem, { loading, error }) => (
           <Form onSubmit={async (e) => {
             // Stop the form from submitting
-            e.preventDefault();
+            e.preventDefault()
             // Call the mutation
-            const res = await createItem();
+            const res = await createItem()
             // Change them to the single item page
             Router.push({
               pathname: '/item',
               query: { id: res.data.createItem.id }
-            });
+            })
           }}>
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
               <label htmlFor="title">
                 Image
-                        <input
+                <input
                   type="file"
                   id="file"
                   name="file"
@@ -93,7 +93,7 @@ class CreateItem extends Component {
               </label>
               <label htmlFor="title">
                 Title
-                        <input
+                <input
                   type="text"
                   id="title"
                   name="title"
@@ -105,7 +105,7 @@ class CreateItem extends Component {
               </label>
               <label htmlFor="price">
                 Price
-                        <input
+                <input
                   type="number"
                   id="price"
                   name="price"
@@ -116,7 +116,7 @@ class CreateItem extends Component {
               </label>
               <label htmlFor="description">
                 Decription
-                        <textarea
+                <textarea
                   id="description"
                   name="description"
                   placeholder="Description"
@@ -130,10 +130,10 @@ class CreateItem extends Component {
           </Form>
         )}
       </Mutation>
-    );
+    )
   }
 }
 
-export default CreateItem;
+export default CreateItem
 
-export { CREATE_ITEM_MUTATION };
+export { CREATE_ITEM_MUTATION }

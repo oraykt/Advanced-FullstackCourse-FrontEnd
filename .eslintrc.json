@@ -1,4 +1,4 @@
-module.exports = {
+{
   "env": {
     "browser": true,
     "es6": true,
@@ -17,9 +17,10 @@ module.exports = {
     "sourceType": "module"
   },
   "plugins": [
-    "react",
+    "react"
   ],
   "rules": {
-    "no-unused-vars": true
-  }
-};
+    "no-unused-vars": 0
+  },
+  "parser": "babel-eslint"
+}

@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { Mutation, Query } from 'react-apollo';
-import Router from 'next/router';
-import gql from 'graphql-tag';
-import Form from './styles/Form';
-import formatMoney from '../lib/formatMoney';
-import Error from './ErrorMessage';
-
+import React, { Component } from 'react'
+import { Mutation, Query } from 'react-apollo'
+import Router from 'next/router'
+import gql from 'graphql-tag'
+import Form from './styles/Form'
+import formatMoney from '../lib/formatMoney'
+import Error from './ErrorMessage'
 
 const SINGLE_ITEM_QUERY = gql`
     query SINGLE_ITEM_QUERY($id:ID!){
@@ -16,7 +15,7 @@ const SINGLE_ITEM_QUERY = gql`
             price
         }
     }
-`;
+`
 
 const UPDATE_DATA_MUTATION = gql`
     mutation UPDATE_DATA_MUTATION(
@@ -37,31 +36,30 @@ const UPDATE_DATA_MUTATION = gql`
             price
         }
     }
-`;
-
+`
 
 class UpdateItem extends Component {
   state = {};
 
   handleChange = (e) => {
-    const { name, type, value } = e.target;
-    const val = type === 'number' ? parseFloat(value) : value;
+    const { name, type, value } = e.target
+    const val = type === 'number' ? parseFloat(value) : value
 
     this.setState({ [name]: val })
   };
   updateItem = async (e, updateItemMutation) => {
-    e.preventDefault();
-    console.log('Updating Item!!');
-    console.log(this.state);
+    e.preventDefault()
+    console.log('Updating Item!!')
+    console.log(this.state)
     const res = await updateItemMutation({
       variables: {
         id: this.props.id,
         ...this.state
       }
-    });
-    console.log('Updated');
+    })
+    console.log('Updated')
   };
-  render() {
+  render () {
     return (
       <Query query={SINGLE_ITEM_QUERY} variables={{
         id: this.props.id
@@ -80,7 +78,7 @@ class UpdateItem extends Component {
                   <fieldset disabled={loading} aria-busy={loading}>
                     <label htmlFor="title">
                       Title
-                        <input
+                      <input
                         type="text"
                         id="title"
                         name="title"
@@ -92,7 +90,7 @@ class UpdateItem extends Component {
                     </label>
                     <label htmlFor="price">
                       Price
-                        <input
+                      <input
                         type="number"
                         id="price"
                         name="price"
@@ -104,7 +102,7 @@ class UpdateItem extends Component {
                     </label>
                     <label htmlFor="description">
                       Decription
-                        <textarea
+                      <textarea
                         id="description"
                         name="description"
                         placeholder="Description"
@@ -121,10 +119,10 @@ class UpdateItem extends Component {
           )
         }}
       </Query>
-    );
+    )
   }
 }
 
-export default UpdateItem;
+export default UpdateItem
 
-export { UPDATE_DATA_MUTATION };
+export { UPDATE_DATA_MUTATION }
