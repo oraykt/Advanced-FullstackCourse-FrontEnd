@@ -11,7 +11,7 @@ const SingleItemStyles = styled.div`
   box-shadow: ${props => props.theme.bs};
   grid-auto-columns: 1fr;
   grid-auto-flow: coluns;
-  min-heigh: 800px;
+  min-height: 800px;
   img {
     width: 100%;
     height: 100%;
@@ -21,8 +21,7 @@ const SingleItemStyles = styled.div`
     margin: 3rem;
     font-size: 2rem;
   }
-`;
-
+`
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id :ID!){
@@ -33,10 +32,9 @@ const SINGLE_ITEM_QUERY = gql`
       largeImage
     }
   }
-`;
+`
 
 class SingleItem extends Component {
-
   render() {
     return (
       <div>
@@ -50,7 +48,7 @@ class SingleItem extends Component {
             if (loading) return <p>Loading...</p>
             if (!data.item) return <p>No Item Found for {this.props.id}</p>
             const item = data.item
-            return <SingleItemStyles>
+            return (<SingleItemStyles>
               <Head>
                 <title>Sick Fits | {item.title}</title>
               </Head>
@@ -60,6 +58,7 @@ class SingleItem extends Component {
                 <p>{item.description}</p>
               </div>
             </SingleItemStyles>
+            )
           }}
         </Query>
       </div>
@@ -67,4 +66,4 @@ class SingleItem extends Component {
   }
 }
 
-export default SingleItem;
+export default SingleItem

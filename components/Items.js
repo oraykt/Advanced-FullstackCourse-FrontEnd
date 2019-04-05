@@ -30,21 +30,21 @@ const ItemsList = styled.div`
 `;
 
 class Items extends Component {
-    render() {
-        return (
-            <Center>
-                <Query query={ALL_ITEMS_QUERY}>
-                    {({ data, error, loading }) => {
-                        if (loading) return <p>Loading...</p>
-                        if (error) return <p>Error : {error.message}</p>
-                        return <ItemsList>
-                            {data.items.map(item => <Item item={item} key={item.id} />)}
-                        </ItemsList>
-                    }}
-                </Query>
-            </Center>
-        );
-    }
+  render() {
+    return (
+      <Center>
+        <Query query={ALL_ITEMS_QUERY}>
+          {({ data, error, loading }) => {
+            if (loading) return <p>Loading...</p>
+            if (error) return <p>Error : {error.message}</p>
+            return <ItemsList>
+              {data.items.map(item => <Item item={item} key={item.id} />)}
+            </ItemsList>
+          }}
+        </Query>
+      </Center>
+    );
+  }
 }
 
 export default Items;
