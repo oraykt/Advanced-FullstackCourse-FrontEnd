@@ -33,14 +33,13 @@ class CreateItem extends Component {
     image: undefined,
     largeImage: undefined,
     price: null
-  };
+  }
 
   handleChange = (e) => {
     const { name, type, value } = e.target
     const val = type === 'number' ? parseFloat(value) : value
-
     this.setState({ [name]: val })
-  };
+  }
 
   uploadFile = async (e) => {
     const files = e.target.files
@@ -110,6 +109,8 @@ class CreateItem extends Component {
                   id="price"
                   name="price"
                   placeholder="Price"
+                  onkeydown="return event.keyCode !== 69"
+                  max="2147483646"
                   required
                   onChange={this.handleChange}
                 />
