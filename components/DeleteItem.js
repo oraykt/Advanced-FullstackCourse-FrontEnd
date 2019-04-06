@@ -37,7 +37,7 @@ class DeleteItem extends Component {
             if (confirm('Are you sure you want to delete this item?')) {
               deleteItem()
             }
-          }}> {this.props.children} </button>
+          }}> <b>{this.props.children} </b></button>
         )}
       </Mutation>
     )
