@@ -23,11 +23,13 @@ const Pagination = props => (
       if (!data) return (<p>Data is not found!</p>)
       const count = data.itemsConnection.aggregate.count
       const pages = Math.ceil(count / perPage)
-      const page = props.page || 1
+      const page = props.page
       return (
         <PaginationStyles>
           <Head>
-            <title>Sick Fits! Page {} of {pages}</title>
+            <title>
+              Sick Fits! — Page {page} of {pages}
+            </title>
           </Head>
           <Link
             prefetch

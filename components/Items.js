@@ -50,7 +50,7 @@ class Items extends Component {
             </ItemsList>
           }}
         </Query>
-        <Pagination />
+        <Pagination page={this.props.page} />
       </Center>
     )
   }
