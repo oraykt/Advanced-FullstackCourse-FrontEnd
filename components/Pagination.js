@@ -22,7 +22,7 @@ const Pagination = props => (
       if (loading) return (<p>Loading...</p>)
       if (!data) return (<p>Data is not found!</p>)
       const count = data.itemsConnection.aggregate.count
-      const pages = Math.ceil(count / perPage)
+      const pages = Math.ceil(count / perPage) === 0 ? 1 : Math.ceil(count / perPage)
       const page = props.page
       return (
         <PaginationStyles>
@@ -37,7 +37,7 @@ const Pagination = props => (
               pathname: 'items',
               query: { page: page - 1 }
             }}>
-            <a className="prev" aria-disabled={page <= 1}><i class="material-icons">skip_previous</i></a>
+            <a className="prev" aria-disabled={page <= 1}><i className="material-icons">skip_previous</i></a>
           </Link>
           <p>
             Page {page} of {pages}
@@ -48,7 +48,7 @@ const Pagination = props => (
               pathname: 'items',
               query: { page: page + 1 }
             }}>
-            <a className="prev" aria-disabled={page >= pages}><i class="material-icons">skip_next</i></a>
+            <a className="prev" aria-disabled={page >= pages}><i className="material-icons">skip_next</i></a>
           </Link>
           <p>
             {count} items total

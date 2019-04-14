@@ -8,11 +8,7 @@ const Columns = styled.div`
 `
 
 const SignUp = props => (
-  <Columns>
-    <Signup />
-    <Signup />
-    <Signup />
-  </Columns>
+  <Signup />
 )
 
 export default SignUp

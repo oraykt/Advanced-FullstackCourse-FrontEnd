@@ -109,7 +109,6 @@ class CreateItem extends Component {
                   id="price"
                   name="price"
                   placeholder="Price"
-                  onkeydown="return event.keyCode !== 69"
                   max="2147483646"
                   required
                   onChange={this.handleChange}

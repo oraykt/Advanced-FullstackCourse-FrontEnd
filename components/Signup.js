@@ -28,7 +28,7 @@ class Signup extends Component {
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state}>
         {(signup, { error, loading }) => {
           return (
-            <Form method="post" onSubmit={async e => {
+            <Form method="POST" onSubmit={async e => {
               e.preventDefault()
               await signup()
               this.setState({ name: '', email: '', password: '' })
@@ -43,7 +43,8 @@ class Signup extends Component {
                     name="name"
                     placeholder="name"
                     value={this.state.name}
-                    onChange={this.saveToState} />
+                    onChange={this.saveToState}
+                    required />
                 </label>
                 <label htmlFor="email">
                   Email
@@ -52,7 +53,8 @@ class Signup extends Component {
                     name="email"
                     placeholder="email"
                     value={this.state.email}
-                    onChange={this.saveToState} />
+                    onChange={this.saveToState}
+                    required />
                 </label>
                 <label htmlFor="password">
                   Password
@@ -61,7 +63,8 @@ class Signup extends Component {
                     name="password"
                     placeholder="password"
                     value={this.state.password}
-                    onChange={this.saveToState} />
+                    onChange={this.saveToState}
+                    required />
                 </label>
                 <button type="submit">Sign Up!</button>
               </fieldset>
